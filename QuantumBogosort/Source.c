@@ -79,6 +79,7 @@ char	*ft_new_universe(char* src, int len)
 		i++;
 	}
 	copy[len] = '\0';
+	free(tab);
 	return (copy);
 }
 
@@ -107,16 +108,17 @@ void	main(void)
 	int		stargate;
 	int		passengers;
 
-	spaceship = "This is a test";
+	spaceship = "TakesTime";
 	stargate = 0;
 	passengers = 0;
-	while (stargate < 1000000)
+	while (stargate < 100000000)
 	{
 		passengers = ft_strlen(spaceship);
 		virtual_reality = ft_new_universe(spaceship, passengers);
 		if (!ft_check_one_dimensional_reality(virtual_reality))
 			break;
 		printf("Spaceship %s has reached the end of virtual reality: '%s', tried stargate %d.\n", spaceship, virtual_reality, stargate);
+		free(virtual_reality);
 		stargate++;
 	}
 	printf("Found the alternating reality: '%s'! Choosen stargate is: %d\n", virtual_reality, stargate);
