@@ -2,7 +2,11 @@
 #include <windows.h>
 #include <stdlib.h>
 
-/* pseudo random only on unix
+/* 
+// pseudo random only on unix, 
+// but still gives equal nbr only...
+*/
+/*
 int ft_rnd(int max)
 {
 	int	*prnd;
@@ -107,19 +111,27 @@ void	main(void)
 	char	*virtual_reality;
 	int		stargate;
 	int		passengers;
+	int		towel;
 
-	spaceship = "TakesTime";
+	spaceship = "destiny";
 	stargate = 0;
 	passengers = 0;
+	towel = 0;
 	while (stargate < 100000000)
 	{
 		passengers = ft_strlen(spaceship);
 		virtual_reality = ft_new_universe(spaceship, passengers);
 		if (!ft_check_one_dimensional_reality(virtual_reality))
+		{
+			towel = 1;
 			break;
+		}
 		printf("Spaceship %s has reached the end of virtual reality: '%s', tried stargate %d.\n", spaceship, virtual_reality, stargate);
 		free(virtual_reality);
 		stargate++;
 	}
-	printf("Found the alternating reality: '%s'! Choosen stargate is: %d\n", virtual_reality, stargate);
+	if (towel)
+		printf("Found the, alternating alphabetically sorted, reality: '%s'! Choosen stargate is: %d\n", virtual_reality, stargate);
+	else
+		printf("Spaceship %s has reached the end of virtual reality: '%s', tried last defined stargate %d.\n", spaceship, virtual_reality, stargate);
 }
